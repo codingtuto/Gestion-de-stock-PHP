@@ -17,9 +17,9 @@ if(isset($_POST['add_product'])){
       $upload = mysqli_query($conn,$insert);
       if($upload){
          move_uploaded_file($product_image_tmp_name, $product_image_folder);
-         $message[] = 'new product added successfully';
+         $message[] = 'Produit ajoutée avec succées';
       }else{
-         $message[] = 'could not add the product';
+         $message[] = 'Erreur produit non ajoutée';
       }
    }
 
@@ -28,7 +28,7 @@ if(isset($_POST['add_product'])){
 if(isset($_GET['delete'])){
    $id = $_GET['delete'];
    mysqli_query($conn, "DELETE FROM products WHERE id = $id");
-   header('location:admin_page.php');
+   header('location:index.php');
 };
 
 ?>
@@ -96,8 +96,8 @@ if(isset($message)){
             <td><?php echo $row['name']; ?></td>
             <td>$<?php echo $row['price']; ?>/-</td>
             <td>
-               <a href="admin_update.php?edit=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-edit"></i> éditer </a>
-               <a href="admin_page.php?delete=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-trash"></i> supprimer </a>
+               <a href="editer.php?edit=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-edit"></i> éditer </a>
+               <a href="editer.php?delete=<?php echo $row['id']; ?>" class="btn"> <i class="fas fa-trash"></i> supprimer </a>
             </td>
          </tr>
       <?php } ?>
